@@ -1,6 +1,11 @@
 @extends('layout.master')
 
 @section('content')
+<!-- Sidebar Menu -->
+
+
+<!-- konten utama -->
+<section class="content">
 <div class="container-fluid">
                   <!-- Small boxes (Stat box) -->
                   <div class="row">
@@ -79,7 +84,7 @@
                            </div>
                            <div class="card-body">
                               <div class="chart">
-                                 <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 334px;" width="334" height="250" class="chartjs-render-monitor"></canvas>
+                              <div id="barChart"></div>
                               </div>
                            </div>
                            <!-- /.card-body -->
@@ -101,7 +106,7 @@
                               </div>
                            </div>
                            <div class="card-body">
-                              <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                              <div id="pieChart"></div>
                            </div>
                            <!-- /.card-body -->
                         </div>
@@ -234,9 +239,11 @@
                         <!-- /.row -->
                      </div>
                      <!-- /.container-fluid -->
+                     </section>
                   </section>
                   <!-- /.content -->
                    <!-- jQuery -->
+         
       <script src="{{asset('public/asset/plugins/jquery/jquery.min.js')}}"></script>
       <!-- Bootstrap 4 -->
       <script src="{{asset('public/asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -253,6 +260,8 @@
       <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
       <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
       <script src="{{asset('public/asset/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+      <!-- js dari data table -->
       <script>
          $('#example2').DataTable({
            "paging": true,
@@ -264,4 +273,111 @@
            "responsive": true,
          });
       </script>
-@endsection
+
+      <!-- js dari grafik barchart -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script>
+        Highcharts.chart('barChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Hasil Panen Porang Pertahun'
+        },
+        xAxis: {
+            categories: [
+                '2010',
+                '2016',
+                '2017',
+                '2018',
+                '2019',
+                '2020'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Presentase Panen',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0]
+        }]
+       });
+      </script>
+
+      <!-- js dari grafik piechart -->
+      <script>
+        // Build the chart
+Highcharts.chart('pieChart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Hasil Panen Porang Pertahun'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Presentase Panen',
+        colorByPoint: true,
+        data: [{
+            name: '2010',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: '2016',
+            y: 11.84
+        }, {
+            name: '2017',
+            y: 10.85
+        }, {
+            name: '2018',
+            y: 4.67
+        }, {
+            name: '2019',
+            y: 4.18
+        }, {
+            name: '2020',
+            y: 7.05
+        }]
+    }]
+});
+      </script>
+      @endsection

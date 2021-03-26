@@ -33,8 +33,8 @@
             <!-- /.content-header -->
             <!-- Main content -->
             <section class="content">
+               </section>
             @yield('content')
-            </section>
             <!-- right col -->
             </div>
             <!-- /.row (main row) -->
@@ -47,6 +47,7 @@
       <!-- /.Bottom -->
       @include('layout.bottom')
       <!-- /.Bottom -->
+      
    </body>
 </html>
 
