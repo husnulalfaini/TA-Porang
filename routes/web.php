@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('ketua_kelompok.konfirmasi_petani');
+    return view('ketua_kelompok.monitoring_petani');
 });
