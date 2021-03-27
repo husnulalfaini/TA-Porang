@@ -6,7 +6,7 @@
                </li>
             </ul>
             <ul class="navbar-nav">
-               <li class="breadcrumb-item">Home</li>
+               <li class="breadcrumb-item text-light">Beranda</li>
                <li class="breadcrumb-item active">Dashboard v1</li>
             </ul>
             <!-- Right navbar links -->
