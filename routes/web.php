@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('ketua_kelompok.monitoring_lahan');
+    return view('ketua_kelompok.lihat_agenda');
 });
